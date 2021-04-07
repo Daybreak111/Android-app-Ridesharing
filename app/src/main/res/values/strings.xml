@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RideSharing</string>
+    <string name="login_id">用户名</string>
+    <string name="login_pin">密码</string>
+    <string name="login">Login</string>
+    <string name="Confirm">confirm</string>
+</resources>

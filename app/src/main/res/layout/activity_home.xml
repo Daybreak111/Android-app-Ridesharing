@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:textSize="20sp"
+        android:text="RideSharing"
+        android:textAlignment="center"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ADADAD"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/home_btn_go"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Go"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/home_btn_map"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Map"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/home_btn_order"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Order"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/home_logout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Logout"
+            android:textSize="15sp" />
+
+
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:textSize="20sp"
+        android:text="Welcome!"
+        android:textAlignment="center"
+        android:paddingBottom="5dp"
+        android:paddingTop="150dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:textSize="20sp"
+        android:text="Get Start Now!"
+        android:textAlignment="center"
+        android:paddingBottom="15dp"
+        android:paddingTop="5dp"/>
+
+
+
+
+</LinearLayout>
