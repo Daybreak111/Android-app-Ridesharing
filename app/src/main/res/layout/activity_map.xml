@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapActivity">
+
+    <TextView
+        android:id="@+id/map_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:textSize="20sp"
+        android:text="RideSharing"
+        android:textAlignment="center"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"/>
+
+    <com.tencent.tencentmap.mapsdk.maps.MapView
+        android:id="@+id/mapview"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:background="@color/black"
+        android:layout_below="@id/title"/>
+
+    <LinearLayout
+        android:id="@+id/ll_poi_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mapview"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <EditText
+            android:id="@+id/location_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="20sp"
+            android:inputType="text"
+            android:maxLines="1"
+            android:background="@color/cardview_light_background"
+            android:hint="输入地址" />
+
+        <EditText
+            android:id="@+id/location_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="20sp"
+            android:inputType="text"
+            android:maxLines="1"
+            android:background="@color/cardview_light_background"
+            android:text="上海地铁站"
+            android:hint="输入地址" />
+
+        <Button
+            android:id="@+id/map_btn_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="确定" />
+    </LinearLayout>
+
+
+</RelativeLayout>

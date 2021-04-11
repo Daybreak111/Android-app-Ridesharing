@@ -12,6 +12,7 @@
         android:textColor="@color/black"
         android:hint="@string/login_id"
         android:inputType="text"
+        android:text="123456"
         android:layout_marginTop="200dp">
     </EditText>
 
