@@ -208,7 +208,7 @@ public class MySQL_client {
         return 0;
     }
 
-    public static int sql_Transaction(String sql) throws SQLException {
+    public static int sql_Transaction(String[] sql_insert, String[] sql_update) {
         Connection conn = null;
         Statement stmt = null;
         Map<String, String> result = new HashMap<String, String>();
@@ -224,7 +224,12 @@ public class MySQL_client {
             // 执行查询
             System.out.println(" 实例化Statement对象...");
             stmt = conn.createStatement();
-            boolean ret = stmt.execute(sql);
+            for(String sql:sql_insert){
+                stmt.execute(sql);
+            }
+            for(String sql:sql_update){
+                stmt.executeUpdate(sql);
+            }
 
             conn.commit();
 
@@ -237,7 +242,11 @@ public class MySQL_client {
         } catch (Exception e) {
             // 处理 Class.forName 错误
             e.printStackTrace();
-            conn.rollback();
+            try {
+                conn.rollback();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         } finally {
             // 关闭资源
             try {

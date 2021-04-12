@@ -4,11 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ridesharing.LoginActivity;
+import com.example.ridesharing.MapActivity;
+import com.example.ridesharing.OrderActivity;
 import com.example.ridesharing.R;
 import com.tencent.lbssearch.TencentSearch;
 import com.tencent.lbssearch.httpresponse.BaseObject;
+import com.tencent.lbssearch.httpresponse.Poi;
 import com.tencent.lbssearch.object.param.DrivingParam;
+import com.tencent.lbssearch.object.param.Geo2AddressParam;
 import com.tencent.lbssearch.object.result.DrivingResultObject;
+import com.tencent.lbssearch.object.result.Geo2AddressResultObject;
 import com.tencent.map.tools.net.http.HttpResponseListener;
 import com.tencent.tencentmap.mapsdk.maps.CameraUpdate;
 import com.tencent.tencentmap.mapsdk.maps.CameraUpdateFactory;
@@ -48,6 +53,8 @@ public class RoutePlanActivity extends AppCompatActivity {
 
     private LatLng latLng_from;
     private LatLng latLng_to;
+    private String address_from;
+    private String address_to;
 
     private double distance;
     private double duration;
@@ -57,15 +64,25 @@ public class RoutePlanActivity extends AppCompatActivity {
     private final Handler handler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
-            distance = msg.getData().getDouble("distance");
-            duration = msg.getData().getDouble("duration");
-            fare = msg.getData().getDouble("fare");
+            switch(msg.what){
+                case 0:
+                    distance = msg.getData().getDouble("distance");
+                    duration = msg.getData().getDouble("duration");
+                    fare = msg.getData().getDouble("fare");
 
-            pre_distance.append(String.valueOf(distance) + " m");
-            pre_duration.append(String.valueOf(duration) + " min");
-            pre_fare.append(String.valueOf(fare) + " RMB");
+                    pre_distance.append(String.valueOf(distance) + " m");
+                    pre_duration.append(String.valueOf(duration) + " min");
+                    pre_fare.append(String.valueOf(fare) + " RMB");
 
-            placeOrder();
+                    placeOrder();
+                    break;
+
+                case 1:
+                    Intent intent = new Intent(RoutePlanActivity.this, OrderActivity.class);
+                    startActivity(intent);
+                    break;
+            }
+
         }
     };
 
@@ -84,6 +101,9 @@ public class RoutePlanActivity extends AppCompatActivity {
         //设置起点和终点经纬度
         latLng_from = new LatLng(bundle.getDouble("latitude_from"), bundle.getDouble("longitude_from"));
         latLng_to = new LatLng(bundle.getDouble("latitude_to"), bundle.getDouble("longitude_to"));
+        address_from = bundle.getString("address_from");
+        address_to = bundle.getString("address_to");
+
         //显示地图
         showMap();
         //获取路线
@@ -172,16 +192,30 @@ public class RoutePlanActivity extends AppCompatActivity {
         route_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Order order = new Order();
                 Time t=new Time();
                 t.setToNow();
+                Order order = new Order();
                 order.order_id = "" + t.year + (t.month+1) + t.monthDay + t.hour + t.minute + t.second + account;
-                order.origin_address = String.valueOf(latLng_from.latitude) + "," + String.valueOf(latLng_from.longitude);
-                order.destination_address = String.valueOf(latLng_to.latitude) + "," + String.valueOf(latLng_to.longitude);
+                order.origin_location = String.valueOf(latLng_from.latitude) + "," + String.valueOf(latLng_from.longitude);
+                order.destination_location = String.valueOf(latLng_to.latitude) + "," + String.valueOf(latLng_to.longitude);
+                order.origin_address = address_from;
+                order.destination_address = address_to;
                 order.fee = fare;
                 order.distance = distance;
                 order.duration = duration;
                 order.user_uid = account;
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        order.addOrder();
+
+                        Message msg = Message.obtain();
+                        msg.what = 1;
+                        handler.sendMessage(msg);
+                    }
+                }).start();
+
             }
         });
     }

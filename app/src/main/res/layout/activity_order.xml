@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/order_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:textSize="20sp"
+        android:text="RideSharing"
+        android:textAlignment="center"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/order_title">
+
+        <TextView
+            android:id="@+id/order_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="订单号: "
+            android:layout_marginTop="15dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/order_from"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="起始地: "
+            android:layout_marginTop="15dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/order_to"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="目的地: "
+            android:layout_marginTop="5dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/order_distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="预估距离: "
+            android:layout_marginTop="15dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/order_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="预估时间: "
+            android:layout_marginTop="15dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/order_fare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="预估车费: "
+            android:layout_marginTop="15dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/order_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="状态: "
+            android:layout_marginTop="15dp">
+        </TextView>
+
+
+        <Button
+            android:id="@+id/order_btn_cancel"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="取消订单"
+            android:textSize="20sp"
+            android:background="@drawable/bg_btn"
+            android:layout_marginTop="20dp"
+            android:visibility="invisible"
+            android:layout_marginHorizontal="100dp"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

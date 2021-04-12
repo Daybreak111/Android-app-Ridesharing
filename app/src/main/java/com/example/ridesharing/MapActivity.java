@@ -92,6 +92,7 @@ public class MapActivity extends AppCompatActivity {
                     }
                     mbundle.putDouble("latitude_from", latitude_from);
                     mbundle.putDouble("longitude_from", longitude_from);
+                    mbundle.putString("address_from", address_from);
                     checkAddress(address_to, AddressType.TO);
                     break;
                 case 3:
@@ -105,6 +106,7 @@ public class MapActivity extends AppCompatActivity {
                     Intent intent = new Intent(MapActivity.this, RoutePlanActivity.class);
                     mbundle.putDouble("latitude_to", latitude_to);
                     mbundle.putDouble("longitude_to", longitude_to);
+                    mbundle.putString("address_to", address_to);
                     intent.putExtra("bundle", mbundle);
                     startActivity(intent);
                     break;
