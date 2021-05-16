@@ -36,6 +36,7 @@ public class OrderActivity extends AppCompatActivity {
     private TextView order_state;
 
     private Button btn_cancel;
+    private Button btn_refresh;
 
     private int state;
     private String order_uid;
@@ -57,15 +58,28 @@ public class OrderActivity extends AppCompatActivity {
                     if(state==0){
                         order_state.append("正在为您匹配司机，请稍后...");
                         setCancelUI();
-                        waitSearchOrder();
                     }else if(state==1){
+                        btn_cancel.setVisibility(View.INVISIBLE);
                         order_state.append("订单进行中");
                     }
+
+                    btn_refresh.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent selfIntent = new Intent(OrderActivity.this, OrderActivity.class);
+                            startActivity(selfIntent);
+                            finish();
+                        }
+                    });
                     break;
                 case 1:
                     Toast.makeText(OrderActivity.this, "订单已被取消", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(OrderActivity.this, MapActivity.class);
                     startActivity(intent);
+                    break;
+                case 2:
+                    Toast.makeText(OrderActivity.this, "订单取消失败", Toast.LENGTH_LONG).show();
+                    break;
             }
 
         }
@@ -85,6 +99,7 @@ public class OrderActivity extends AppCompatActivity {
         order_fare = findViewById(R.id.order_fare);
         order_state = findViewById(R.id.order_state);
         btn_cancel = findViewById(R.id.order_btn_cancel);
+        btn_refresh = findViewById(R.id.order_btn_refresh);
 
         searchOrder();
     }
@@ -97,6 +112,11 @@ public class OrderActivity extends AppCompatActivity {
                 String sql = String.format("SELECT * from rideorder WHERE user_uid='%s' and state < 2;", LoginActivity.account);
                 Log.e("SQL", sql);
                 Map<String, String> result = MySQL_client.sql_Select(sql, var);
+                if(result==null){
+                    Message msg = Message.obtain();
+                    msg.what = 1;
+                    handler.sendMessage(msg);
+                }
 
                 Message msg = Message.obtain();
                 msg.what = 0;
@@ -114,35 +134,6 @@ public class OrderActivity extends AppCompatActivity {
         }).start();
     }
 
-    private void waitSearchOrder(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                String[] var = {"order_id", "driver_uid", "origin", "destination", "state", "suborder1", "suborder2", "distance", "duration", "fee" };
-                String sql = String.format("SELECT * from rideorder WHERE user_uid='%s' and state < 2;", LoginActivity.account);
-                Map<String, String> result = MySQL_client.sql_Select(sql, var);
-
-                Message msg = Message.obtain();
-                msg.what = 0;
-                Bundle bundle = new Bundle();
-                bundle.putString("order_id", result.get("order_id"));
-                bundle.putString("order_from", result.get("origin"));
-                bundle.putString("order_to", result.get("destination"));
-                bundle.putString("order_distance", result.get("distance"));
-                bundle.putString("order_duration", result.get("duration"));
-                bundle.putString("order_fare", result.get("fee"));
-                bundle.putInt("order_state", Integer.parseInt(result.get("state")));
-                msg.setData(bundle);
-                handler.sendMessage(msg);
-            }
-        });
-    }
-
     private void setCancelUI(){
         btn_cancel.setVisibility(View.VISIBLE);
         btn_cancel.setOnClickListener(new View.OnClickListener() {
@@ -155,7 +146,12 @@ public class OrderActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        order.cancelOrder();
+                        if(order.cancelOrder()==-1){
+                            Message msg = Message.obtain();
+                            msg.what = 2;
+                            handler.sendMessage(msg);
+                            return;
+                        }
                         Message msg = Message.obtain();
                         msg.what = 1;
                         handler.sendMessage(msg);

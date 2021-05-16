@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/suborder_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:textSize="20sp"
+        android:text="RideSharing"
+        android:textAlignment="center"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"/>
+
+    <LinearLayout
+        android:id="@+id/suborder1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/suborder1_tv1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="15dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/suborder1_tv2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp">
+            </TextView>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/suborder1_btn"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="100dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/suborder2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/suborder2_tv1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="15dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/suborder2_tv2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp">
+            </TextView>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/suborder2_btn"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="100dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/suborder3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/suborder3_tv1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="15dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/suborder3_tv2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp">
+            </TextView>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/suborder3_btn"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="100dp"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

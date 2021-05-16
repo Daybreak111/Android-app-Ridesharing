@@ -7,27 +7,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.ridesharing.route.RoutePlanActivity;
+public class DriverHomeActivity extends AppCompatActivity {
 
-public class HomeActivity extends AppCompatActivity {
-
-    private Button mBtn_map;
+    private Button mBtn_getOrder;
     private Button mBtn_logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_driver_home);
 
-        mBtn_map = findViewById(R.id.home_btn_map);
-        mBtn_logout = findViewById(R.id.home_logout);
+        mBtn_getOrder = findViewById(R.id.home_btn_getOrder);
+        mBtn_logout = findViewById(R.id.driver_logout);
 
         setListeners();
     }
 
     private void setListeners(){
         OnClick onClick = new OnClick();
-        mBtn_map.setOnClickListener(onClick);
+        mBtn_getOrder.setOnClickListener(onClick);
         mBtn_logout.setOnClickListener(onClick);
     }
 
@@ -37,15 +35,14 @@ public class HomeActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent intent = null;
             switch (v.getId()){
-                case R.id.home_btn_map:
-                    intent = new Intent(HomeActivity.this, MapActivity.class);
+                case R.id.driver_logout:
+                    intent = new Intent(DriverHomeActivity.this, LoginActivity.class);
                     break;
-                case R.id.home_logout:
-                    intent = new Intent(HomeActivity.this, LoginActivity.class);
+                case R.id.home_btn_getOrder:
+                    intent = new Intent(DriverHomeActivity.this, DriverGetOrderActivity.class);
                     break;
             }
             startActivity(intent);
         }
     }
 }
-

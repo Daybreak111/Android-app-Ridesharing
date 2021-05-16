@@ -23,7 +23,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RideSharing"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OrderActivity"></activity>
+        <activity android:name=".SubOrderActivity"></activity>
+        <activity android:name=".DriverGetOrderActivity" />
+        <activity android:name=".DriverHomeActivity" />
+        <activity android:name=".OrderActivity" />
         <activity android:name=".route.RoutePlanActivity" />
         <activity android:name=".MapActivity" />
         <activity android:name=".HomeActivity" />

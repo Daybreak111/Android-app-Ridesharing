@@ -12,7 +12,7 @@
         android:textColor="@color/black"
         android:hint="@string/login_id"
         android:inputType="text"
-        android:text="RS100001"
+        android:text="RS200001"
         android:layout_marginTop="200dp">
     </EditText>
 
@@ -28,6 +28,32 @@
         android:text="000000"
         android:inputType="textPassword">
     </EditText>
+    
+    <RadioGroup
+        android:id="@+id/login_type"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/login_password"
+        android:layout_marginTop="15dp">
+
+        <RadioButton
+            android:id="@+id/login_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User"
+            android:textSize="18sp"
+            android:paddingRight="100dp"/>
+
+        <RadioButton
+            android:id="@+id/login_driver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Driver"
+            android:textSize="18sp"/>
+
+
+    </RadioGroup>
 
     <Button
         android:id="@+id/login_btn_confirm"

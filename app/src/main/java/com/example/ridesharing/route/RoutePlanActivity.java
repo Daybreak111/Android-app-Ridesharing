@@ -1,6 +1,7 @@
 package com.example.ridesharing.route;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ridesharing.LoginActivity;
@@ -78,7 +79,13 @@ public class RoutePlanActivity extends AppCompatActivity {
                     break;
 
                 case 1:
+                    int has_order = msg.getData().getInt("has_order");
                     Intent intent = new Intent(RoutePlanActivity.this, OrderActivity.class);
+                    if(has_order==1){
+                        Toast.makeText(RoutePlanActivity.this, "您有一个订单正在进行中", Toast.LENGTH_LONG).show();
+                        startActivity(intent);
+                        break;
+                    }
                     startActivity(intent);
                     break;
             }
@@ -152,6 +159,10 @@ public class RoutePlanActivity extends AppCompatActivity {
                         }
                         mMap.addPolyline(new PolylineOptions().add(mCarLatLngArray));
 
+                        Marker marker1 = mMap.addMarker(new MarkerOptions(latLng_from));
+                        Marker marker2 = mMap.addMarker(new MarkerOptions(latLng_to));
+
+
                         LatLng carLatLng = mCarLatLngArray[0];
                         Marker mCarMarker = mMap.addMarker(
                                 new MarkerOptions(carLatLng)
@@ -187,7 +198,6 @@ public class RoutePlanActivity extends AppCompatActivity {
      */
     private void placeOrder(){
         String account = LoginActivity.account;
-        Log.e("Account", account);
 
         route_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,10 +218,16 @@ public class RoutePlanActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        order.addOrder();
-
                         Message msg = Message.obtain();
                         msg.what = 1;
+                        Bundle bundle = new Bundle();
+                        if(order.checkUserState()==0){
+                            order.addOrder();
+                            bundle.putInt("has_order", 0);
+                        }else if(order.checkUserState()==1){
+                            bundle.putInt("has_order", 1);
+                        }
+                        msg.setData(bundle);
                         handler.sendMessage(msg);
                     }
                 }).start();

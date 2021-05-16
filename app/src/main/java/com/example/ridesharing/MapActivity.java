@@ -175,8 +175,8 @@ public class MapActivity extends AppCompatActivity {
 //                  double longitude = location.getLongitude();
 //                  String geo = location.getCity();
                     String geo = "上海";
-                    double latitude = 31.23691;
-                    double longitude = 121.50109;
+                    double latitude = 31.149860448696764;
+                    double longitude = 121.33877429456082;
 
                     Message msg = Message.obtain();
                     msg.what = 0;
